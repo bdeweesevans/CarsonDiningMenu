@@ -24,8 +24,8 @@ def image_creator(menu_items, image_width, image_height):
     unicode_text = u"Stats = "
     statsFont = ImageFont.truetype('assets/fonts/Inter-Regular.ttf', int(image_width * 0.024), encoding="unic")
     text_width, text_height = statsFont.getsize(unicode_text)
-    draw.text((3, 2), f"Stats = Time: {time.ctime()}", font=statsFont, fill=(205, 204, 205))    #add stats like followers?
-    draw.text((3 + text_width, image_height*0.034), "Code Repo: https://github.com/bdeweesevans/CarsonScraper", font=statsFont, fill=(205, 204, 205))
+    draw.text((3, 2), f"Stats = Time: {time.ctime()}", font=statsFont, fill=(165, 168, 194))    #add stats like followers?
+    draw.text((3 + text_width, image_height*0.034), "Code Repo: https://github.com/bdeweesevans/CarsonScraper", font=statsFont, fill=(165, 168, 194))
 
     # Logo (scaled)
     logo = Image.open('assets/program_images/logo.png')
@@ -43,7 +43,7 @@ def image_creator(menu_items, image_width, image_height):
     # Menu items (unscaled)
     titleFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
     for item in range(len(menu_items)):
-        draw.text((20, (item+3)*50), f"{menu_items[item]}", font=titleFont, fill=(205, 204, 205))
+        draw.text((20, (item+3.5)*50), f"{menu_items[item]}", font=titleFont, fill=(205, 204, 205))
                         #item+y: y controls item start pos
 
     # Shows and saves post image

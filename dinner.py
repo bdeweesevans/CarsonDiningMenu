@@ -18,7 +18,7 @@ def dinner_scraper():
     counter = 0
     for div in divs:
         x = div.xpath('child::*')
-        counter += 1    # Counter referenced in navigating menu path.
+        counter += 1    # counter variable referenced in navigating menu path.
 
     # bs4 is called on the html file.
     soup = bs4.BeautifulSoup(res.text, 'html.parser')
@@ -26,6 +26,15 @@ def dinner_scraper():
     # Feeds parser the path.
     dinner_menu = soup.select(f'#block-views-fe66ae869509158158420587268374be > div > div > div.view-content > div:nth-child({counter})')
     rawHTML = str(dinner_menu[0])
+
+    # Splits and isolates title names.
+    splitTitles = rawHTML.split("</p>")
+    titles = []
+    for splitTitle in splitTitles:
+        arr = splitTitle.split(">")
+        elem = arr[len(arr) - 1]
+        if (len(elem) > 0):
+            titles.append(elem)
 
     # Splits and isolates food names.
     splitFoods = rawHTML.split("</strong>")
@@ -37,5 +46,6 @@ def dinner_scraper():
             foods.append(elem)
     
     # Final lines
-    print(foods)    # can remove for deployment
+    print(f'Titles List: {titles}')  # can remove for deployment
+    print(f'Foods List: {foods}')    # can remove for deployment
     return foods
