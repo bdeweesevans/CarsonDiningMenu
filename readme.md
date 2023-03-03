@@ -1,6 +1,6 @@
 # CarsonScraper
 
-![image of logo.](assets/program_images/logo.png)
+![image of icon.](assets/program_images/icon.png)
 
 Instagram Page: <https://instagram.com/carsonbites>
 

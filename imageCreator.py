@@ -30,12 +30,12 @@ def image_creator(menu_items, image_width, image_height):
     draw.text((3, 2), f"Stats = Time: {time.ctime()}", font=statsFont, fill=(165, 168, 194))    #add stats like followers?
     draw.text((3 + text_width, image_height*0.034), "Code Repo: https://github.com/bdeweesevans/CarsonScraper", font=statsFont, fill=(165, 168, 194))
 
-    # Logo (scaled)
-    logo = Image.open('assets/program_images/logo.png')
+    # Icon (scaled)
+    icon = Image.open('assets/program_images/icon.png')
     newsize = (int(image_width*0.069),int(image_height*0.069))
-    logo = logo.resize(newsize)
-    logo_width, logo_height = logo.size
-    img.paste(logo, (image_width-logo_width, 1))
+    icon = icon.resize(newsize)
+    icon_width, icon_height = icon.size
+    img.paste(icon, (image_width-icon_width, 1))
 
     # Menu title (scaled)
     unicode_text = u"Today's Menu:"
