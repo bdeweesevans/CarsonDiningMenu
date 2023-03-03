@@ -1,5 +1,7 @@
 # CarsonScraper
 
+![image of logo.](assets/program_images/logo.png)
+
 Instagram Page: <https://instagram.com/carsonbites>
 
 ## General Resources
