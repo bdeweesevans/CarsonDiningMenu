@@ -1,7 +1,7 @@
 '''
 '''
 # Import statements.
-import bs4, requests, re, lxml
+import bs4, requests, lxml
 
 def dinner_scraper():
     # HTML is downloaded and validity of download is checked
@@ -46,6 +46,4 @@ def dinner_scraper():
             foods.append(elem)
     
     # Final lines
-    print(f'Titles List: {titles}')  # can remove for deployment
-    print(f'Foods List: {foods}')    # can remove for deployment
     return foods

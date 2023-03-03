@@ -38,15 +38,15 @@ def image_creator(menu_items, image_width, image_height):
     unicode_text = u"Today's Menu:"
     titleFont = ImageFont.truetype('assets/fonts/Inter-Bold.ttf', int(image_width * 0.056), encoding="unic")
     text_width, text_height = titleFont.getsize(unicode_text)
-    draw.text(((image_width/2)-(text_width/2), image_height * 0.07), "Today's Menu:", font=titleFont, fill=(205, 204, 205))
+    draw.text(((image_width/2)-(text_width/2), image_height * 0.08), "Today's Menu:", font=titleFont, fill=(205, 204, 205))
 
     # Menu items (unscaled)
     titleFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
     for item in range(len(menu_items)):
-        draw.text((20, (item+3.5)*50), f"{menu_items[item]}", font=titleFont, fill=(205, 204, 205))
+        draw.text((20, (item+3.5)*50), f"•{menu_items[item]}", font=titleFont, fill=(205, 204, 205))
                         #item+y: y controls item start pos
 
     # Shows and saves post image
     img.show()
-    #img.save("post_images/image_test.jpg")
+    img.save("assets/post_images/image.jpg")
     return

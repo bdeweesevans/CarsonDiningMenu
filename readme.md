@@ -1,6 +1,7 @@
 # CarsonScraper
 
-To run program:
-```>>>python3 main.py```
+## General Resources
 
-Scraping Link: ```https://housing.uoregon.edu/carson-dining#dinner```
+To run program:```>>> python3 main.py```
+
+Scraping Link:```https://housing.uoregon.edu/carson-dining#dinner```
