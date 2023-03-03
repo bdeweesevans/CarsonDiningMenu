@@ -29,7 +29,7 @@ def dinner_scraper():
     dinner_menu = soup.select(f'#block-views-fe66ae869509158158420587268374be > div > div > div.view-content > div:nth-child({counter})')
     rawHTML = str(dinner_menu[0])
 
-    # Splits and isolates title names.
+    # Splits and isolates title names. (Unused)
     splitTitles = rawHTML.split("</p>")
     titles = []
     for splitTitle in splitTitles:

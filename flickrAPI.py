@@ -26,13 +26,9 @@ def uploadToFlickr():
     # Uploads Image
     uploaded_image = flickr_api.upload(photo_file = 'assets/post_images/image.jpg', title='Auto-upload.', description=f'Daily Dinner Menu for Carson Dining Hall, University of Oregon.\nTime of Upload: {str(time.ctime())}', is_public = '1', hidden = '2')
     print('Image: Uploaded')
-    photo_id = uploaded_image['id']
+    flickr_photo_id = uploaded_image['id']
 
-    # Returns the photo's link
-    base_url = 'https://www.flickr.com/photos/197834213@N08/'
-    web_url = f'{base_url}{photo_id}'
-
-    download_info = (flickr_api.Photo.getSizes(uploaded_image))  #no worky! docs say needs to be called as flickr?
+    download_info = (flickr_api.Photo.getSizes(uploaded_image))
     download_url = download_info['Original']['source']
     print(f'Image Source URL: {download_url}')
     return download_url
