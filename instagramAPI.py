@@ -16,7 +16,7 @@ def postInstagramImage(flickr_image_link):
         'access_token': user_access_token
     }
     r = requests.post(post_url, data=payload)
-    print(r.text)
+    print(f'Instagram Image Bin: {r.text}')
     result = json.loads(r.text)
 
     # Deliveres post object, uploading.
@@ -28,7 +28,7 @@ def postInstagramImage(flickr_image_link):
         'access_token': user_access_token
         }
         r = requests.post(second_url, data=second_payload)
-        print('--------Just posted to instagram--------')
-        print(r.text)
+        print('Instagram Image: Uploaded')
+        print(f'Instagram Image Post: {r.text}')
     else:
-        print('HOUSTON we have a problem')
+        print('Instagram Error: HOUSTON we have a problem')

@@ -28,7 +28,7 @@ def image_creator(menu_items, image_width, image_height):
     statsFont = ImageFont.truetype('assets/fonts/Inter-Regular.ttf', int(image_width * 0.024), encoding="unic")
     text_width, text_height = statsFont.getsize(unicode_text)
     draw.text((3, 2), f"Stats = Time: {time.ctime()}", font=statsFont, fill=(165, 168, 194))    #add stats like followers?
-    draw.text((3 + text_width, image_height*0.034), "Code Repo: https://github.com/bdeweesevans/CarsonScraper", font=statsFont, fill=(165, 168, 194))
+    draw.text((3 + text_width, image_height*0.034), "Codebase: https://github.com/bdeweesevans/CarsonScraper", font=statsFont, fill=(165, 168, 194))
 
     # Icon (scaled)
     icon = Image.open('assets/program_images/icon.png')
@@ -40,14 +40,19 @@ def image_creator(menu_items, image_width, image_height):
     # Menu title (scaled)
     unicode_text = u"Today's Menu:"
     titleFont = ImageFont.truetype('assets/fonts/Inter-Bold.ttf', int(image_width * 0.056), encoding="unic")
-    text_width, text_height = titleFont.getsize(unicode_text)
-    draw.text(((image_width/2)-(text_width/2), image_height * 0.08), "Today's Menu:", font=titleFont, fill=(205, 204, 205))
+    title_width, title_height = titleFont.getsize(unicode_text)
+    draw.text(((image_width/2)-(title_width/2), image_height * 0.08), "Today's Menu:", font=titleFont, fill=(205, 204, 205))
 
-    # Menu items (unscaled)
-    titleFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
-    for item in range(len(menu_items)):
-        draw.text((20, (item+3.5)*50), f"•{menu_items[item]}", font=titleFont, fill=(205, 204, 205))
-                        #item+y: y controls item start pos
+    if (len(menu_items) == 0):
+        noDataFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
+        noData_width, noData_height = noDataFont.getsize(unicode_text)
+        draw.text(((image_width/2)-(noData_width/2), image_height * 0.2), "No menu data provided on website", font=noDataFont, fill=(205, 204, 205))
+    else:
+        # Menu items (unscaled)
+        menuFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
+        for item in range(len(menu_items)):
+            draw.text((20, (item+3.5)*50), f"•{menu_items[item]}", font=menuFont, fill=(205, 204, 205))
+                #item+y: y controls item start pos
 
     # Shows and saves post image
     img.show()
