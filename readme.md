@@ -2,7 +2,7 @@
 
 ![image of icon.](assets/program_images/icon.png)
 
-Instagram Page: <https://instagram.com/carsonbites>
+Instagram Page: <https://instagram.com/carsondiningmenu>
 
 ## General Resources
 
