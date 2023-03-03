@@ -1,4 +1,7 @@
-'''Colors
+'''Notes:
+Handles the creation of the menu image.
+
+Colors =
 Background: 37, 36, 39
 Stats Bar: 30, 31, 31
 Box Outlines: 65, 65, 65

@@ -1,3 +1,6 @@
+'''Notes:
+Handles the authorization to and uploading of the meny image to Flickr. 
+'''
 import flickr_api, time, os.path, keys
 
 api_key = keys.keys['flickr_api_key']

@@ -1,4 +1,6 @@
-'''
+'''Notes:
+Handles the downloading and parsing of website HTML. 
+Returns the dinner menu items as a list.
 '''
 # Import statements.
 import bs4, requests, lxml

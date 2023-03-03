@@ -1,3 +1,6 @@
+'''Notes:
+Handles the uploading of the menu image to Instagram.
+'''
 import requests, json, time, keys
 
 ig_user_id = keys.keys['ig_user_id']
