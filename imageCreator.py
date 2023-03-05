@@ -7,10 +7,21 @@ Stats Bar: 30, 31, 31
 Box Outlines: 65, 65, 65
 Text: 205, 204, 205
 Lavender Text: 165, 168, 194
+Icon Red: 228,36,52
+Icon Yellow: 244, 196, 44
 '''
 # Import statements.
-import time
+import time, datetime
 from PIL import Image, ImageDraw, ImageFont
+
+days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+dt = datetime.datetime.now()
+day = dt.weekday()
+
+basic_food_words = ['Beans','Beef','Broccoli','Chicken','Corn','Gnocci','Mushrooms',
+                    'Noodles','Pollo','Pork','Rice','Shrimp','Sweet','Tamales','Tofu',
+                    'Vegetables','Verde']
+selected_image_words = []
 
 def image_creator(menu_items, image_width, image_height):
     # Creation of image objects and draw
@@ -39,20 +50,67 @@ def image_creator(menu_items, image_width, image_height):
 
     # Menu title (scaled)
     unicode_text = u"Today's Menu:"
-    titleFont = ImageFont.truetype('assets/fonts/Inter-Bold.ttf', int(image_width * 0.056), encoding="unic")
+    titleFont = ImageFont.truetype('assets/fonts/Inter-Bold.ttf', int(image_width * 0.07), encoding="unic")
     title_width, title_height = titleFont.getsize(unicode_text)
-    draw.text(((image_width/2)-(title_width/2), image_height * 0.08), "Today's Menu:", font=titleFont, fill=(205, 204, 205))
+    draw.text(((image_width/2)-(title_width/2), image_height * 0.085), "Today's Menu:", font=titleFont, fill=(244, 196, 44))
 
+    # Day of the week title (scaled)
+    unicode_text = f'{days[day]}'
+    dayFont = ImageFont.truetype('assets/fonts/Inter-Bold.ttf', int(image_width * 0.0675), encoding="unic")
+    day_width, day_height = dayFont.getsize(unicode_text)
+    draw.text(((image_width/2)-(day_width/2), image_height * 0.17), f"{days[day]}", font=dayFont, fill=(244, 196, 44))
+
+    # Creates image of no food if Dinner header exists but there's no data.
     if (len(menu_items) == 0):
-        noDataFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
+        # No Data text (Scaled)
+        unicode_text = u"No menu data provided by university :("
+        noDataFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.04), encoding="unic")
         noData_width, noData_height = noDataFont.getsize(unicode_text)
-        draw.text(((image_width/2)-(noData_width/2), image_height * 0.2), "No menu data provided on website", font=noDataFont, fill=(205, 204, 205))
+        draw.text(((image_width/2)-(noData_width/2), image_height * 0.25), "No menu data provided by university :(", font=noDataFont, fill=(205, 204, 205))
+
+        # No Data null image (Scaled)
+        nullImage = Image.open('assets/food_images/unknown.jpg')
+        newsize = (int(image_width*0.6),int(image_height*0.6))
+        nullImage = nullImage.resize(newsize)
+        nullImage_width, nullImage_height = nullImage.size
+        img.paste(nullImage, (int((image_width/2)-(nullImage_width/2)), int(image_height * 0.305)))
+    
+    # Adds the food pictures and text
     else:
-        # Menu items (unscaled)
-        menuFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
-        for item in range(len(menu_items)):
-            draw.text((20, (item+3.5)*50), f"•{menu_items[item]}", font=menuFont, fill=(205, 204, 205))
-                #item+y: y controls item start pos
+        # for loops find the words that we have photos for
+        for i in range(len(menu_items)):
+            for j in basic_food_words:
+                if j in menu_items[i]:
+                    selected_image_words.append(j)
+
+        # Menu items (Scaled)
+        itemFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
+        for i in range(8):
+            if (i < len(menu_items)):
+                unicode_text = f'{menu_items[i]}'
+                item_width, item_height = itemFont.getsize(unicode_text)
+                draw.text(((image_width/2)-(item_width/2), (i+11.2)*50), f"{menu_items[i]}", font=itemFont, fill=(205, 204, 205))
+
+        # Food Image 1 image (Scaled)
+        foodImage1 = Image.open(f'assets/food_images/{selected_image_words[0]}.jpg')
+        newsize = (int(image_width*0.25),int(image_height*0.25))
+        foodImage1 = foodImage1.resize(newsize)
+        foodImage1_width, foodImage1_height = foodImage1.size
+        img.paste(foodImage1, (int((image_width/10)*1), int(image_height * 0.285)))
+
+        # Food Image 2 image (Scaled)
+        foodImage2 = Image.open(f'assets/food_images/{selected_image_words[1]}.jpg')
+        newsize = (int(image_width*0.25),int(image_height*0.25))
+        foodImage2 = foodImage2.resize(newsize)
+        foodImage2_width, foodImage2_height = foodImage2.size
+        img.paste(foodImage2, (int((image_width/2)-(foodImage2_width/2)), int(image_height * 0.285)))
+
+        # Food Image 3 image (Scaled)
+        foodImage3 = Image.open(f'assets/food_images/{selected_image_words[2]}.jpg')
+        newsize = (int(image_width*0.25),int(image_height*0.25))
+        foodImage3 = foodImage3.resize(newsize)
+        foodImage3_width, foodImage3_height = foodImage3.size
+        img.paste(foodImage3, (int((image_width/10)*6.5), int(image_height * 0.285)))
 
     # Shows and saves post image
     img.show()

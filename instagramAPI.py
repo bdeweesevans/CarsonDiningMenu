@@ -1,18 +1,22 @@
 '''Notes:
 Handles the uploading of the menu image to Instagram.
 '''
-import requests, json, time, keys
+import requests, json, datetime, Keys
 
-ig_user_id = keys.keys['ig_user_id']
-user_access_token = keys.keys['ig_user_access_token']
+ig_user_id = Keys.keys['ig_user_id']
+user_access_token = Keys.keys['ig_user_access_token']
 
-def postInstagramImage(flickr_image_link):
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+dt = datetime.datetime.now()
+day = dt.weekday()
+
+def postInstagramImage(flickr_image_link, menu_titles):
     # Creates post object
     image_location_1 = flickr_image_link
     post_url = 'https://graph.facebook.com/v16.0/{}/media'.format(ig_user_id)
     payload = {
         'image_url': image_location_1,
-        'caption': f'Dindin!\nToday\'s Date:\n{time.ctime()}\nDeveloped by @bdeweesevans',
+        'caption': f"Dindin for today, {days[day]}!\nListed foods are for Carson's \"{menu_titles[0]}\" and \"{menu_titles[1]}\".\nDeveloped by @bdeweesevans",
         'access_token': user_access_token
     }
     r = requests.post(post_url, data=payload)

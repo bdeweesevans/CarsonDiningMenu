@@ -7,7 +7,7 @@ import bs4, requests, lxml
 
 def dinner_scraper():
     # HTML is downloaded and validity of download is checked
-    res = requests.get('https://housing.uoregon.edu/carson-dining#dinner')
+    res = requests.get('https://housing.uoregon.edu/carson-dining?preview=2023-03-05#dinner')
     res.raise_for_status()
 
     # lxml is called on the html file.
@@ -47,5 +47,11 @@ def dinner_scraper():
         if (len(elem) > 0):
             foods.append(elem)
     
+    # Resolves '&amp;' issue.
+    for i in range(len(foods)):
+        foods[i] = foods[i].replace('amp;','')
+    for i in range(len(titles)):
+        titles[i] = titles[i].replace('amp;','')
+
     # Final lines
-    return foods
+    return foods, titles

@@ -1,10 +1,10 @@
 '''Notes:
 Handles the authorization to and uploading of the meny image to Flickr. 
 '''
-import flickr_api, time, os.path, keys
+import flickr_api, time, os.path, Keys
 
-api_key = keys.keys['flickr_api_key']
-api_secret = keys.keys['flickr_api_secret']
+api_key = Keys.keys['flickr_api_key']
+api_secret = Keys.keys['flickr_api_secret']
 flickr_api.set_keys(api_key, api_secret)
 
 # Runs if auth.txt file is empty and populates it with key info.
@@ -33,6 +33,7 @@ def uploadToFlickr():
     print(f'Flickr Image Source URL: {download_url}')
     return download_url, uploaded_image
 
+# Function deletes the image from Flickr cloud storage.
 def removeFromFlickr(uploaded_image):
     flickr_api.Photo.delete(uploaded_image)
     print('Flickr Image: Deleted from Flickr Cloud Storage')
