@@ -41,7 +41,7 @@ def image_creator(menu_items, dinner_validity, image_width, image_height):
     statsFont = ImageFont.truetype('assets/fonts/Inter-Regular.ttf', int(image_width * 0.024), encoding="unic")
     text_width, text_height = statsFont.getsize(unicode_text)
     draw.text((3, 2), f"Stats = Time: {time.ctime()}", font=statsFont, fill=(165, 168, 194))    #add stats like followers?
-    draw.text((3 + text_width, image_height*0.034), "Codebase: https://github.com/bdeweesevans/CarsonScraper", font=statsFont, fill=(165, 168, 194))
+    draw.text((3 + text_width, image_height*0.034), "Codebase: https://github.com/bdeweesevans/CarsonDiningMenu", font=statsFont, fill=(165, 168, 194))
 
     # Icon (scaled)
     icon = Image.open('assets/program_images/icon.png')
