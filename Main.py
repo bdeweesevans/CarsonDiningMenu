@@ -25,4 +25,4 @@ def main():
     print('---Execution Complete.---')
 
 # Uncomment this line to run this file manually.
-#main()
+main()

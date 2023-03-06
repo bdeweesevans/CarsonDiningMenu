@@ -21,7 +21,7 @@ day = dt.weekday()
 
 # Declarations for words we have images for.
 basic_food_words = ['Beans','Beef','Broccoli','Chicken','Corn','Gnocci','Mushrooms',
-                    'Noodles','Pollo','Pork','Rice','Shrimp','Sweet','Tamales','Tofu',
+                    'Noodles','Pollo','Bacon','Rice','Shrimp','Sweet','Tamales','Tofu',
                     'Vegetables','Verde']
 selected_image_words = []
 

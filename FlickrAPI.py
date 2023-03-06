@@ -7,8 +7,8 @@ api_key = Keys.keys['flickr_api_key']
 api_secret = Keys.keys['flickr_api_secret']
 flickr_api.set_keys(api_key, api_secret)
 
-# Runs if auth.txt file is empty and populates it with key info.
-if (os.path.getsize("auth.txt") == 0):
+# Runs if Auth.txt file is empty and populates it with key info.
+if (os.path.getsize("Auth.txt") == 0):
     a = flickr_api.auth.AuthHandler()
     perms = "delete"
     url = a.get_authorization_url(perms)
