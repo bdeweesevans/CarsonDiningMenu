@@ -9,8 +9,10 @@ Instagram Page: <https://instagram.com/carsondiningmenu>
 ### Dependencies
 
 Dependencies include:
--This program also utilizes the Python libraries named 'beautifulsoup4', 'lxml', 'Pillow', 'flickr-api', 'DateTime', 'requests', and 'schedule'. You will need to install all of these libraries for the program to properly function.
--Keys.py and Auth.txt. Auth.txt does not have to be populated with the authorization token whem first run. Keys.py does need to be supplied the necessary API keys and Secrets. Step instructions are included below in that file.
+
+- This program also utilizes the Python libraries named 'beautifulsoup4', 'lxml', 'Pillow', 'flickr-api', 'DateTime', 'requests', and 'schedule'. You will need to install all of these libraries for the program to properly function.
+
+- Keys.py and Auth.txt. Auth.txt does not have to be populated with the authorization token whem first run. Keys.py does need to be supplied the necessary API keys and Secrets. Step instructions are included below in that file.
 
 ## General Resources
 
