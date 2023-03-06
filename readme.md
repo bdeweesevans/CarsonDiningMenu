@@ -18,7 +18,7 @@ Dependencies include:
 
 To run program:```>>> python3 main.py```
 
-Keys Instructions in ```keys.py```
+Keys Instructions in ```Keys.py```
 
 Scraping Link: ```https://housing.uoregon.edu/carson-dining#dinner```
 
