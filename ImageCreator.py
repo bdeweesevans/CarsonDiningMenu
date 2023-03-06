@@ -146,6 +146,6 @@ def image_creator(menu_items, dinner_validity, image_width, image_height):
         img.paste(nullImage, (int((image_width/2)-(nullImage_width/2)), int(image_height * 0.305)))
     
     # Shows and saves post image
-    img.show()
+    #img.show()
     img.save("assets/post_images/image.jpg")
     return
