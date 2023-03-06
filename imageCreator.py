@@ -14,16 +14,18 @@ Icon Yellow: 244, 196, 44
 import time, datetime
 from PIL import Image, ImageDraw, ImageFont
 
+# Declarations for day of the week.
 days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 dt = datetime.datetime.now()
 day = dt.weekday()
 
+# Declarations for words we have images for.
 basic_food_words = ['Beans','Beef','Broccoli','Chicken','Corn','Gnocci','Mushrooms',
                     'Noodles','Pollo','Pork','Rice','Shrimp','Sweet','Tamales','Tofu',
                     'Vegetables','Verde']
 selected_image_words = []
 
-def image_creator(menu_items, image_width, image_height):
+def image_creator(menu_items, dinner_validity, image_width, image_height):
     # Creation of image objects and draw
     img = Image.new('RGB', (image_width, image_height), (37, 36, 39))
     draw = ImageDraw.Draw(img)
@@ -60,58 +62,89 @@ def image_creator(menu_items, image_width, image_height):
     day_width, day_height = dayFont.getsize(unicode_text)
     draw.text(((image_width/2)-(day_width/2), image_height * 0.17), f"{days[day]}", font=dayFont, fill=(244, 196, 44))
 
-    # Creates image of no food if Dinner header exists but there's no data.
-    if (len(menu_items) == 0):
+    # Checks if there even is dinner that day.
+    if(dinner_validity == True):
+        # Creates image of no food if Dinner header exists but there's no data.
+        if (len(menu_items) == 0):
+            # No Data text (Scaled)
+            unicode_text = u"No menu data provided by university :("
+            noDataFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.04), encoding="unic")
+            noData_width, noData_height = noDataFont.getsize(unicode_text)
+            draw.text(((image_width/2)-(noData_width/2), image_height * 0.25), "No menu data provided by university :(", font=noDataFont, fill=(205, 204, 205))
+
+            # No Data null image (Scaled)
+            nullImage = Image.open('assets/program_images/unknown.jpg')
+            newsize = (int(image_width*0.6),int(image_height*0.6))
+            nullImage = nullImage.resize(newsize)
+            nullImage_width, nullImage_height = nullImage.size
+            img.paste(nullImage, (int((image_width/2)-(nullImage_width/2)), int(image_height * 0.305)))
+        
+        # Adds the food pictures and text
+        else:
+            # for loops find the words that we have photos for
+            for i in range(len(menu_items)):
+                for j in basic_food_words:
+                    if j in menu_items[i]:
+                        selected_image_words.append(j)
+
+            # Menu items (Scaled)
+            itemFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
+            for i in range(8):
+                if (i < len(menu_items)):
+                    unicode_text = f'{menu_items[i]}'
+                    item_width, item_height = itemFont.getsize(unicode_text)
+                    draw.text(((image_width/2)-(item_width/2), (i+11.2)*50), f"{menu_items[i]}", font=itemFont, fill=(205, 204, 205))
+
+            # Food image selectors.
+            unknown = Image.open(f'assets/food_images/noimage.jpg')
+            if (len(selected_image_words)>=3):
+                foodImage1 = Image.open(f'assets/food_images/{selected_image_words[1]}.jpg')
+                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0]}.jpg')
+                foodImage3 = Image.open(f'assets/food_images/{selected_image_words[2]}.jpg')
+            elif (len(selected_image_words)==2):
+                foodImage1 = Image.open(f'assets/food_images/{selected_image_words[1]}.jpg')
+                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0]}.jpg')
+                foodImage3 = unknown
+            elif (len(selected_image_words)==1):
+                foodImage1 = unknown
+                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0]}.jpg')
+                foodImage3 = unknown
+            else:
+                foodImage1 = unknown
+                foodImage2 = unknown
+                foodImage3 = unknown
+            newsize = (int(image_width*0.25),int(image_height*0.25))  
+
+            # Food Image Left image (Scaled)
+            foodImage1 = foodImage1.resize(newsize)
+            foodImage1_width, foodImage1_height = foodImage1.size
+            img.paste(foodImage1, (int((image_width/10)*1), int(image_height * 0.285)))
+
+            # Food Image Middle image (Scaled)
+            foodImage2 = foodImage2.resize(newsize)
+            foodImage2_width, foodImage2_height = foodImage2.size
+            img.paste(foodImage2, (int((image_width/2)-(foodImage2_width/2)), int(image_height * 0.285)))
+
+            # Food Image Right image (Scaled)
+            foodImage3 = foodImage3.resize(newsize)
+            foodImage3_width, foodImage3_height = foodImage3.size
+            img.paste(foodImage3, (int((image_width/10)*6.5), int(image_height * 0.285)))
+    
+    #triggers if there is no dinner that day
+    else:
         # No Data text (Scaled)
-        unicode_text = u"No menu data provided by university :("
+        unicode_text = u"There is no dinner today at Carson."
         noDataFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.04), encoding="unic")
         noData_width, noData_height = noDataFont.getsize(unicode_text)
-        draw.text(((image_width/2)-(noData_width/2), image_height * 0.25), "No menu data provided by university :(", font=noDataFont, fill=(205, 204, 205))
+        draw.text(((image_width/2)-(noData_width/2), image_height * 0.25), "There is no dinner today at Carson", font=noDataFont, fill=(205, 204, 205))
 
         # No Data null image (Scaled)
-        nullImage = Image.open('assets/food_images/unknown.jpg')
+        nullImage = Image.open('assets/program_images/fridge.jpg')
         newsize = (int(image_width*0.6),int(image_height*0.6))
         nullImage = nullImage.resize(newsize)
         nullImage_width, nullImage_height = nullImage.size
         img.paste(nullImage, (int((image_width/2)-(nullImage_width/2)), int(image_height * 0.305)))
     
-    # Adds the food pictures and text
-    else:
-        # for loops find the words that we have photos for
-        for i in range(len(menu_items)):
-            for j in basic_food_words:
-                if j in menu_items[i]:
-                    selected_image_words.append(j)
-
-        # Menu items (Scaled)
-        itemFont = ImageFont.truetype('assets/fonts/Inter-Medium.ttf', int(image_width * 0.036), encoding="unic")
-        for i in range(8):
-            if (i < len(menu_items)):
-                unicode_text = f'{menu_items[i]}'
-                item_width, item_height = itemFont.getsize(unicode_text)
-                draw.text(((image_width/2)-(item_width/2), (i+11.2)*50), f"{menu_items[i]}", font=itemFont, fill=(205, 204, 205))
-
-        # Food Image 1 image (Scaled)
-        foodImage1 = Image.open(f'assets/food_images/{selected_image_words[0]}.jpg')
-        newsize = (int(image_width*0.25),int(image_height*0.25))
-        foodImage1 = foodImage1.resize(newsize)
-        foodImage1_width, foodImage1_height = foodImage1.size
-        img.paste(foodImage1, (int((image_width/10)*1), int(image_height * 0.285)))
-
-        # Food Image 2 image (Scaled)
-        foodImage2 = Image.open(f'assets/food_images/{selected_image_words[1]}.jpg')
-        newsize = (int(image_width*0.25),int(image_height*0.25))
-        foodImage2 = foodImage2.resize(newsize)
-        foodImage2_width, foodImage2_height = foodImage2.size
-        img.paste(foodImage2, (int((image_width/2)-(foodImage2_width/2)), int(image_height * 0.285)))
-
-        # Food Image 3 image (Scaled)
-        foodImage3 = Image.open(f'assets/food_images/{selected_image_words[2]}.jpg')
-        newsize = (int(image_width*0.25),int(image_height*0.25))
-        foodImage3 = foodImage3.resize(newsize)
-        foodImage3_width, foodImage3_height = foodImage3.size
-        img.paste(foodImage3, (int((image_width/10)*6.5), int(image_height * 0.285)))
-
     # Shows and saves post image
     img.show()
     img.save("assets/post_images/image.jpg")
