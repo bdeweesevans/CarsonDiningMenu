@@ -20,7 +20,7 @@ dt = datetime.datetime.now()
 day = dt.weekday()
 
 # Declarations for words we have images for.
-basic_food_words = ['Beans','Beef','Broccoli','Chicken','Corn','Gnocci','Mushrooms',
+basic_food_words = ['Waffle', 'Egg', 'Beans','Beef','Broccoli','Chicken','Corn','Gnocci','Mushrooms',
                     'Noodles','Pollo','Bacon','Rice','Shrimp','Sweet','Tamales','Tofu',
                     'Vegetables','Verde']
 selected_image_words = []
@@ -98,16 +98,16 @@ def image_creator(menu_items, dinner_validity, image_width, image_height):
             # Food image selectors.
             unknown = Image.open(f'assets/food_images/noimage.jpg')
             if (len(selected_image_words)>=3):
-                foodImage1 = Image.open(f'assets/food_images/{selected_image_words[1]}.jpg')
-                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0]}.jpg')
-                foodImage3 = Image.open(f'assets/food_images/{selected_image_words[2]}.jpg')
+                foodImage1 = Image.open(f'assets/food_images/{selected_image_words[1].lower()}.jpg')
+                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0].lower()}.jpg')
+                foodImage3 = Image.open(f'assets/food_images/{selected_image_words[2].lower()}.jpg')
             elif (len(selected_image_words)==2):
-                foodImage1 = Image.open(f'assets/food_images/{selected_image_words[1]}.jpg')
-                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0]}.jpg')
+                foodImage1 = Image.open(f'assets/food_images/{selected_image_words[1].lower()}.jpg')
+                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0].lower()}.jpg')
                 foodImage3 = unknown
             elif (len(selected_image_words)==1):
                 foodImage1 = unknown
-                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0]}.jpg')
+                foodImage2 = Image.open(f'assets/food_images/{selected_image_words[0].lower()}.jpg')
                 foodImage3 = unknown
             else:
                 foodImage1 = unknown
