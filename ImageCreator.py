@@ -20,8 +20,8 @@ dt = datetime.datetime.now()
 day = dt.weekday()
 
 # Declarations for words we have images for.
-basic_food_words = ['Waffle', 'Egg', 'Beans','Beef','Broccoli','Chicken','Corn','Gnocci','Mushrooms',
-                    'Noodles','Pollo','Bacon','Rice','Shrimp','Sweet','Tamales','Tofu',
+basic_food_words = ['Waffle','Egg','Beans','Beef','Broccoli','Orange','Chicken','Corn','Gnocci',
+                    'Mushrooms','Noodles','Pollo','Bacon','Rice','Shrimp','Sweet','Tamales','Tofu',
                     'Vegetables','Verde']
 selected_image_words = []
 
