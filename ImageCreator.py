@@ -16,16 +16,18 @@ from PIL import Image, ImageDraw, ImageFont
 
 # Declarations for day of the week.
 days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-dt = datetime.datetime.now()
-day = dt.weekday()
 
 # Declarations for words we have images for.
 basic_food_words = ['Waffle','Egg','Beans','Beef','Broccoli','Orange','Chicken','Corn','Gnocci',
                     'Mushrooms','Noodles','Pollo','Bacon','Rice','Shrimp','Sweet','Tamales','Tofu',
                     'Vegetables','Verde']
-selected_image_words = []
 
 def image_creator(menu_items, dinner_validity, image_width, image_height):
+    # to reset values with each run
+    dt = datetime.datetime.now()
+    day = dt.weekday()
+    selected_image_words = []
+    
     # Creation of image objects and draw
     img = Image.new('RGB', (image_width, image_height), (37, 36, 39))
     draw = ImageDraw.Draw(img)

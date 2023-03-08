@@ -7,10 +7,12 @@ ig_user_id = Keys.keys['ig_user_id']
 user_access_token = Keys.keys['ig_user_access_token']
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-dt = datetime.datetime.now()
-day = dt.weekday()
 
 def postInstagramImage(flickr_image_link, menu_titles):
+    #resets variables woth each run
+    dt = datetime.datetime.now()
+    day = dt.weekday()
+
     # Creates post object
     image_location_1 = flickr_image_link
     post_url = 'https://graph.facebook.com/v16.0/{}/media'.format(ig_user_id)
