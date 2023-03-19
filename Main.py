@@ -2,10 +2,11 @@
 Run this file to initiate the program to execute manually. (you will have to call main.)
 '''
 # Import statements.
-import MenuPuller, ImageCreator, FlickrAPI, InstagramAPI
+import MenuPuller, ImageCreator, FlickrAPI, InstagramAPI, time
 
 def main():
     print('---Execution Begin.---')
+    print(f'Data Point #1: {time.ctime()}')
 
     # Collects menu items using menuPuller.py.
     menu_items, menu_titles, dinner_validity = MenuPuller.dinner_scraper()
@@ -22,6 +23,7 @@ def main():
     # Deletes the image from Flickr cloud storage.
     FlickrAPI.removeFromFlickr(uploaded_image_object)
 
+    print(f'Data Point #2: {time.ctime()}')
     print('---Execution Complete.---')
 
 # Uncomment this line to run this file manually.

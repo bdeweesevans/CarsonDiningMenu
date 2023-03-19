@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw, ImageFont
 days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
 # Declarations for words we have images for.
-basic_food_words = ['Waffle','Egg','Beans','Beef','Broccoli','Orange','Chicken','Corn','Gnocci',
+basic_food_words = ['Waffle','Egg','Beans','Beef','Broccoli','Tikka','Orange','Chicken','Corn','Gnocci',
                     'Mushrooms','Noodles','Pollo','Bacon','Rice','Shrimp','Sweet','Tamales','Tofu',
                     'Vegetables','Verde']
 

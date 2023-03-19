@@ -19,6 +19,7 @@ def postInstagramImage(flickr_image_link, menu_titles):
     payload = {
         'image_url': image_location_1,
         'caption': f"Dindin for today, {days[day]}!\nListed foods are for Carson's \"{menu_titles[0]}\" and \"{menu_titles[1]}\".\nDinner runs from 5:00-8:00 PM.\nDeveloped by @bdeweesevans",
+        #'caption': f"Carson! You failed to properly update your website to display \"\". Shame on you. I am dissapointed and you have tarnished the reputation of @CarsonDiningMenu.\nThe actual dindin for today, {days[day]}!\nListed foods are for Carson's \"\".\nDinner runs from 5:00-8:00 PM.\nDeveloped by @bdeweesevans",
         'access_token': user_access_token
     }
     r = requests.post(post_url, data=payload)

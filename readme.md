@@ -45,3 +45,7 @@ Instagram Graph API, Facebook: 'Getting Started'
 
 Configure Authorization Tokens: 'Graph API Explorer'
 ```https://developers.facebook.com/tools/explorer/```
+
+## Image Example
+
+![example image](assets/program_images/example_image.jpg)
