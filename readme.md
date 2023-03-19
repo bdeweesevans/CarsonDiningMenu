@@ -1,4 +1,4 @@
-# CarsonScraper
+# CarsonDiningMenu
 
 ![image of icon.](assets/program_images/icon.png)
 
