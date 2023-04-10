@@ -27,38 +27,44 @@ def dinner_scraper():
 
     # if statement to ensure dinner category exists
     last_category = tree.xpath(f'/html/body/div[2]/div[4]/div[2]/div/div[2]/div/div/div[1]/div[2]/div/div/ul/li[{counter}]/a/text()')
-    if ((last_category[0]) == 'Dinner'):
-        # Feeds parser the path.
-        dinner_menu = soup.select(f'#block-views-fe66ae869509158158420587268374be > div > div > div.view-content > div:nth-child({counter})')
-        rawHTML = str(dinner_menu[0])
+    if len(last_category)==1:
+        if ((last_category[0]) == 'Dinner'):
+            # Feeds parser the path.
+            dinner_menu = soup.select(f'#block-views-fe66ae869509158158420587268374be > div > div > div.view-content > div:nth-child({counter})')
+            rawHTML = str(dinner_menu[0])
 
-        # Splits and isolates title names. (Unused)
-        splitTitles = rawHTML.split("</p>")
-        titles = []
-        for splitTitle in splitTitles:
-            arr = splitTitle.split(">")
-            elem = arr[len(arr) - 1]
-            if (len(elem) > 0):
-                titles.append(elem)
+            # Splits and isolates title names. (Unused)
+            splitTitles = rawHTML.split("</p>")
+            titles = []
+            for splitTitle in splitTitles:
+                arr = splitTitle.split(">")
+                elem = arr[len(arr) - 1]
+                if (len(elem) > 0):
+                    titles.append(elem)
 
-        # Splits and isolates food names.
-        splitFoods = rawHTML.split("</strong>")
-        foods = []
-        for splitFood in splitFoods:
-            arr = splitFood.split(">")
-            elem = arr[len(arr) - 1]
-            if (len(elem) > 0):
-                foods.append(elem)
+            # Splits and isolates food names.
+            splitFoods = rawHTML.split("</strong>")
+            foods = []
+            for splitFood in splitFoods:
+                arr = splitFood.split(">")
+                elem = arr[len(arr) - 1]
+                if (len(elem) > 0):
+                    foods.append(elem)
+            
+            # Resolves '&amp;' issue.
+            for i in range(len(foods)):
+                foods[i] = foods[i].replace('amp;','')
+            for i in range(len(titles)):
+                titles[i] = titles[i].replace('amp;','')
+
+            # Final lines
+            dinner_validity = True
+            return foods, titles, dinner_validity
         
-        # Resolves '&amp;' issue.
-        for i in range(len(foods)):
-            foods[i] = foods[i].replace('amp;','')
-        for i in range(len(titles)):
-            titles[i] = titles[i].replace('amp;','')
-
-        # Final lines
-        dinner_validity = True
-        return foods, titles, dinner_validity
+        else:
+            foods, titles = [], []
+            dinner_validity = False
+            return foods, titles, dinner_validity
     else:
         foods, titles = [], []
         dinner_validity = False

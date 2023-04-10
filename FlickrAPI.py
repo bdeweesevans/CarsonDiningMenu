@@ -18,11 +18,12 @@ if (os.path.getsize("Auth.txt") == 0):
     a.save('Auth.txt')  # Populates file
     print('Oauth info has been written to file for later reference.')
 
+# Authorizes the session with each run.
+flickr_api.set_auth_handler('Auth.txt')
+print('Flickr Session: Authorized')
+
 # Function uploads photo to Flickr and returns link.
 def uploadToFlickr():
-    # Authorizes the session with each run.
-    flickr_api.set_auth_handler('Auth.txt')
-    print('Flickr Session: Authorized')
 
     # Uploads Image
     uploaded_image = flickr_api.upload(photo_file = 'assets/post_images/image.jpg', title='Auto-upload.', description=f'Daily Dinner Menu for Carson Dining Hall, University of Oregon.\nTime of Upload: {str(time.ctime())}', is_public = '1', hidden = '2')

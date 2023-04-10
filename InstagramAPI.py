@@ -13,6 +13,9 @@ def postInstagramImage(flickr_image_link, menu_titles):
     dt = datetime.datetime.now()
     day = dt.weekday()
 
+    if len(menu_titles) == 0:
+        menu_titles = 'N/A','N/A'
+
     # Creates post object
     image_location_1 = flickr_image_link
     post_url = 'https://graph.facebook.com/v16.0/{}/media'.format(ig_user_id)
