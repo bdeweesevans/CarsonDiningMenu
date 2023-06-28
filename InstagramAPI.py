@@ -19,12 +19,21 @@ def postInstagramImage(flickr_image_link, menu_titles):
     # Creates post object
     image_location_1 = flickr_image_link
     post_url = 'https://graph.facebook.com/v16.0/{}/media'.format(ig_user_id)
-    payload = {
-        'image_url': image_location_1,
-        'caption': f"Dindin for today, {days[day]}!\nListed foods are for Carson's \"{menu_titles[0]}\" and \"{menu_titles[1]}\".\nDinner runs from 5:00-8:00 PM.\nDeveloped by @bdeweesevans",
-        #'caption': f"Carson! You failed to properly update your website to display \"\". Shame on you. I am dissapointed and you have tarnished the reputation of @CarsonDiningMenu.\nThe actual dindin for today, {days[day]}!\nListed foods are for Carson's \"\".\nDinner runs from 5:00-8:00 PM.\nDeveloped by @bdeweesevans",
-        'access_token': user_access_token
-    }
+    
+    if len(menu_titles) >= 2:
+        payload = {
+            'image_url': image_location_1,
+            'caption': f"Dindin for today, {days[day]}!\nListed foods are for Carson's \"{menu_titles[0]}\" and \"{menu_titles[1]}\".\nDinner runs from 5:00-8:00 PM.\nDeveloped by @bdeweesevans",
+            #'caption': f"Carson! You failed to properly update your website to display \"\". Shame on you. I am dissapointed and you have tarnished the reputation of @CarsonDiningMenu.\nThe actual dindin for today, {days[day]}!\nListed foods are for Carson's \"\".\nDinner runs from 5:00-8:00 PM.\nDeveloped by @bdeweesevans",
+            'access_token': user_access_token
+        }
+    else:
+        payload = {
+            'image_url': image_location_1,
+            'caption': f"Dindin for today, {days[day]}!\nDinner runs from 5:00-8:00 PM.\nDeveloped by @bdeweesevans",
+            'access_token': user_access_token
+        }
+
     r = requests.post(post_url, data=payload)
     print(f'Instagram Image Bin: {r.text}')
     result = json.loads(r.text)

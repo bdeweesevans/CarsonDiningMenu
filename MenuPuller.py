@@ -3,7 +3,7 @@ Handles the downloading and parsing of website HTML.
 Returns the dinner menu items as a list.
 '''
 # Import statements.
-import bs4, requests, lxml
+import bs4, requests, lxml, MenuTitles
 
 def dinner_scraper():
     # HTML is downloaded and validity of download is checked
@@ -51,11 +51,40 @@ def dinner_scraper():
                 if (len(elem) > 0):
                     foods.append(elem)
             
-            # Resolves '&amp;' issue.
+            # Resolves '&amp;', '\n', and '\t' issue.
             for i in range(len(foods)):
                 foods[i] = foods[i].replace('amp;','')
+                foods[i] = foods[i].replace('\n','')
+                foods[i] = foods[i].replace('\t','')
+                
             for i in range(len(titles)):
                 titles[i] = titles[i].replace('amp;','')
+
+            #========================================================
+            # Grossly Fixes New Issues with Carsons HTML Updates. 
+            # dont have time to do this properly, works for now.
+            # Removes titles from foods list and other stuff.
+            removal_list = []
+            for i in range(len(foods)):
+                for elem in range(len(MenuTitles.titles)):
+                    if (MenuTitles.titles[elem] in foods[i].lower()):
+                        titles.append(foods[i])
+                        removal_list.append(foods[i])
+
+            for i in range(len(removal_list)):
+                foods.remove(removal_list[i])
+            
+            while 'contains soy' in foods:
+                foods.remove('contains soy')
+            while 'contains milk' in foods:
+                foods.remove('contains milk')
+            
+            # Removes the random stuff before the real titles. This is disgusting. I hate this code.
+            #print(titles)
+            titles.pop(0)
+            titles.pop(0)
+            #print(titles)
+            #========================================================
 
             # Final lines
             dinner_validity = True

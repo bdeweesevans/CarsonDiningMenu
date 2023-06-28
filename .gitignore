@@ -3,3 +3,5 @@ Keys.py
 Auth.txt
 .DS_Store
 __pycache__
+.vscode
+assets

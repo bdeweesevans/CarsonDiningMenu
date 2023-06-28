@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw, ImageFont
 days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
 # Declarations for words we have images for.
-basic_food_words = ['Waffle','Egg','Beans','Beef','Broccoli','Tikka','Orange','Chicken','Corn','Gnocci',
+basic_food_words = ['Lasagna','Waffle','Egg','Beans','Beef','Tikka','Orange','Chicken','Corn','Broccoli','Gnocci',
                     'Mushrooms','Noodles','Pollo','Bacon','Rice','Shrimp','Sweet','Tamales','Tofu',
                     'Vegetables','Verde']
 
@@ -148,6 +148,6 @@ def image_creator(menu_items, dinner_validity, image_width, image_height):
         img.paste(nullImage, (int((image_width/2)-(nullImage_width/2)), int(image_height * 0.305)))
     
     # Shows and saves post image
-    #img.show()
+    img.show()
     img.save("assets/post_images/image.jpg")
     return
