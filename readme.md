@@ -16,7 +16,7 @@ Dependencies include:
 
 ## General Resources
 
-To run program:```>>> python3 main.py```
+To run program: ```>>> python3 main.py```
 
 Keys Instructions in ```Keys.py```
 
